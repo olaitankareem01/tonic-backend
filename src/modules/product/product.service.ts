@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import Redis from 'ioredis';
 import { Model } from 'mongoose';
 import { CreateProductDto } from 'src/dtos/create-product.dto';
-import { Product } from 'src/models/entities/product.entity';
+import { Product } from '../../models/entities/product.entity';
 
 
 @Injectable()
@@ -62,7 +62,7 @@ async updateStock(productId: string, quantityChange: number) {
     const productKeyPrefix = 'product:';
     const productKeys = productIds.map(id => `${productKeyPrefix}${id}`);
     
-    // retrieving product details from Redis cache
+    // retrieving product details from cache
     const cachedProducts = await this.redisClient.mget(...productKeys);
     const products: Record<string, any> = {};
     const missingProductIds: string[] = [];
@@ -77,7 +77,6 @@ async updateStock(productId: string, quantityChange: number) {
       }
     });
   
-    //fetch missing products from database
     if (missingProductIds.length > 0) {
       const missingProducts = await this.getProductsByIds(missingProductIds);
   

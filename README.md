@@ -1,85 +1,104 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Cuery Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is a NestJS-based service for shopping cart API.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Table of Contents
 
-## Description
+- [Getting Started](#getting-started)
+- [Running the Application](#running-the-application)
+- [Testing](#testing)
+- [Assumptions and Design Decisions](#assumptions-and-design-decisions)
+- [API Endpoints](#api-endpoints)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## Getting Started
 
-```bash
-$ npm install
-```
+### Prerequisites
 
-## Compile and run the project
+Ensure you have the following installed on your system:
 
-```bash
-# development
-$ npm run start
+- **Node.js** (v18.x or later)
+- **npm** (v6.x or later)
+- **NestJS CLI** (optional but recommended)
+- A code editor like **VSCode** (recommended)
 
-# watch mode
-$ npm run start:dev
+### Installation
 
-# production mode
-$ npm run start:prod
-```
+1. Clone the repository:
 
-## Run tests
+   ```bash
+   git clone https://github.com/olaitankareem01/tonic-backend.git
 
-```bash
-# unit tests
-$ npm run test
+2. Navigate to the project directory
+   
+   ```bash
+   cd tonic-backend
+   ```
+3. Install dependencies
 
-# e2e tests
-$ npm run test:e2e
+    ```bash 
+     npm install
+4. Copy the .env.example file to .env and configure any necessary environment variables:
 
-# test coverage
-$ npm run test:cov
-```
+    ```bash
+    cp .env.sample .env
+  In the .env file, configure your environment variables as needed (e.g., PORT).
 
-## Resources
+### Running the Application
 
-Check out a few resources that may come in handy when working with NestJS:
+  To start the application:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+    ```bash
+      npm start
+    ```
+  Alternatively, you can run the app using docker
+### Running the application with docker:
+1. Install Docker: Make sure you have Docker installed on your machine. You can download and install it from Docker's official website[https://www.docker.com/].
 
-## Support
+2. Run the command below to spin up the app, mongodb,and redis:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   ```bash
+    docker-compose up -d
+   ```
 
-## Stay in touch
+  This command maps port 5500 of the container to port 5500 of your host machine. 
+  Open your browser and go to http://localhost:5500/api to access a swagger UI where the api can be tested.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+  a user details has been seeded:  {
+    email: 'admin@example.com',
+    password: 'admin1234!',
+  }
 
-## License
+### Testing
+  Jest is being used for unit testing. To run the test suite, including unit tests and controller tests:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+  ## Running Test:
+    ```bash
+     npm run test
+    ```
+  ## Running Test Coverage
+    To run tests and check coverage:
+
+    ```bash
+      npm run test:cov
+    ```
+### Assumptions and Design Decisions
+
+### 1.   
+after login,user can add or remove product from cart, it is saved in the cache.
+### 2. 
+when the user checks out, order is created in the database and the stock is updated
+### 3. 
+product details are stored in the cache and updated on checkout
+### 4.
+Redis lock is used to handle concurrent update of the cart
+### 5.
+stock is validated when user adds to cart and re-validated on checkout to prevent overselling
+
+
+
+
+
+
+        

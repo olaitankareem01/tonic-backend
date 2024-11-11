@@ -4,7 +4,7 @@ import { Model, Types } from 'mongoose';
 import { ProductService } from '../product/product.service';
 import { Redis } from 'ioredis';
 import { RedisService } from '@liaoliaots/nestjs-redis';
-import { Order } from 'src/models/entities/order.entity';
+import { Order } from '../../models/entities/order.entity';
 
 @Injectable()
 export class CartService {
